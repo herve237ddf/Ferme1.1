@@ -82,8 +82,8 @@ if selected_file and Path(selected_file).exists():
     try:
         spec.loader.exec_module(module)
     except Exception as e:
-        st.error(f"❌ Une erreur est survenue dans le fichier `{selected_file}` : {e}\")
+        st.error(f"❌ Une erreur est survenue dans le fichier `{selected_file}` : {e}")
 else:
-    st.error(f"❌ Le fichier {selected_file} est introuvable.\")
-    st.info("Contactez le développeur à l'adresse : nguefaherve@gmail.com\")
+    st.error(f"❌ Le fichier {selected_file} est introuvable.")
+    st.info("Contactez le développeur à l'adresse : nguefaherve@gmail.com")
 
