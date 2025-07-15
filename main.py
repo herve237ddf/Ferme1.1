@@ -6,8 +6,8 @@ st.set_page_config(page_title="Tableau de Bord Ferme", layout="wide")
 
 
 # === CONFIGURATION ===
-PASSWORD = "supersecret"
-USERNAME = "Fabrice"
+PASSWORD = st.secrets["PASSWORD"]
+USERNAME = st.secrets["USERNAME"]
 PAGES = {
     "Accueil": "pages/mes_pages/main.py",
     "budget": "pages/mes_pages/ajout_budget.py",
