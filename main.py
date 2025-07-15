@@ -73,10 +73,17 @@ st.sidebar.button("🔓 Déconnexion", on_click=logout)
 
 # === AFFICHAGE DES PAGES ===
 selected_file = PAGES.get(selection)
+import importlib.util
+
 if selected_file and Path(selected_file).exists():
-    with open(selected_file, "r", encoding="utf-8") as f:
-        code = f.read()
-        exec(code, globals())  # À remplacer plus tard par importlib pour + sécurité
+    module_name = Path(selected_file).stem  # extrait le nom de fichier sans .py
+    spec = importlib.util.spec_from_file_location(module_name, selected_file)
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception as e:
+        st.error(f\"❌ Une erreur est survenue dans le fichier `{selected_file}` : {e}\")
 else:
-    st.error(f"❌ Le fichier {selected_file} est introuvable.")
-    st.info("Contactez le développeur à l'adresse : nguefaherve@gmail.com")
+    st.error(f\"❌ Le fichier {selected_file} est introuvable.\")
+    st.info(\"Contactez le développeur à l'adresse : nguefaherve@gmail.com\")
+
